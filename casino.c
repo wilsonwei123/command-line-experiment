@@ -327,7 +327,7 @@ void startRaceGamble(void) {
             char c[21];
             char d[21];
             char guess[21];
-            int num, valid;
+            int num;
 
             printf("Enter the first racer's name (20 characters max): ");
             scanf("%s", a);
@@ -347,9 +347,8 @@ void startRaceGamble(void) {
 
             do {
                 printf("Enter your bet (pays one-to-one, must be a positive integer): ");
-                valid = scanf("%d", &bet);
 
-                if (valid != 1) {
+                if (scanf("%d", &bet) != 1) {
                     printf("Invalid input, try again\n");
                     continue;
                 } else {
@@ -456,7 +455,6 @@ void calcWinningsAndExecute(void) {
 
 //main function for slots
 void startSlotsGamble(void) {
-    int valid;
     intro();
 
     while (tokens > 0) {
@@ -466,10 +464,9 @@ void startSlotsGamble(void) {
         if (response == 'y') {
             do {
                 printf("Enter your bet (positive integer): ");
-                valid = scanf("%d", &bet);
                 printf("\n");
 
-                if (valid != 1) {
+                if (scanf("%d", &bet) != 1) {
                     printf("Invalid input, try again\n");
                     continue;
                 } else {
