@@ -350,7 +350,7 @@ void startRaceGamble(void) {
 
                 if (scanf("%d", &bet) != 1) {
                     printf("Invalid input, try again\n");
-                    clearInputBuffer();
+                    while (getchar() != '\n');
                     continue;
                 } else {
                     if (bet > tokens) {
@@ -469,7 +469,7 @@ void startSlotsGamble(void) {
 
                 if (scanf("%d", &bet) != 1) {
                     printf("Invalid input, try again\n");
-                    clearInputBuffer();
+                    while (getchar() != '\n');
                     continue;
                 } else {
                     if (bet <= 0) {
