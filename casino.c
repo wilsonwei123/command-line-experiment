@@ -346,6 +346,7 @@ void startRaceGamble(void) {
             strcpy(racer2.raceCarColor, d);
 
             do {
+                bet = 0;
                 printf("Enter your bet (pays one-to-one, must be a positive integer): ");
 
                 if (scanf("%d", &bet) != 1) {
@@ -464,8 +465,8 @@ void startSlotsGamble(void) {
 
         if (response == 'y') {
             do {
+                bet = 0;
                 printf("Enter your bet (positive integer): ");
-                printf("\n");
 
                 if (scanf("%d", &bet) != 1) {
                     printf("Invalid input, try again\n");
