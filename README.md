@@ -5,28 +5,28 @@ A simple gambling game
 
 ## Installation
 Clone the repository:
-    ```bash
+    ```
     git clone https://github.com/wilsonwei123/casino.git
     ```
 
 Navigate into the project directory:
-    ```bash
+    ```
     cd casino
     ```
 
 Compile:
-    ```bash
+    ```
     gcc casino.c
     ```
 If you are using windows, you may have to first install minGW.
 
 Run (for mac):
-    ```bash
+    ```
     ./a.out
     ``` 
 
 Run (for windows):
-    ```bash
+    ```
     a.exe
     ``` 
     
