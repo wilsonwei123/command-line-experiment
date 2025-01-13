@@ -327,7 +327,7 @@ void startRaceGamble(void) {
             char c[21];
             char d[21];
             char guess[21];
-            int num;
+            int num, valid;
 
             printf("Enter the first racer's name (20 characters max): ");
             scanf("%s", a);
@@ -347,12 +347,17 @@ void startRaceGamble(void) {
 
             do {
                 printf("Enter your bet (pays one-to-one, must be a positive integer): ");
-                scanf("%d", &bet);
+                valid = scanf("%d", &bet);
 
-                if (bet > tokens) {
-                    printf("You don't have that many tokens.\n");
-                } else if (bet <= 0) {
-                    printf("Bet must be positive.\n");
+                if (valid != 1) {
+                    printf("Invalid input, try again\n");
+                    continue;
+                } else {
+                    if (bet > tokens) {
+                        printf("You don't have that many tokens.\n");
+                    } else if (bet <= 0) {
+                        printf("Bet must be positive.\n");
+                    }
                 }
             } while (bet > tokens || bet <= 0);
 
@@ -451,6 +456,7 @@ void calcWinningsAndExecute(void) {
 
 //main function for slots
 void startSlotsGamble(void) {
+    int valid;
     intro();
 
     while (tokens > 0) {
@@ -460,13 +466,18 @@ void startSlotsGamble(void) {
         if (response == 'y') {
             do {
                 printf("Enter your bet (positive integer): ");
-                scanf("%d", &bet);
+                valid = scanf("%d", &bet);
                 printf("\n");
 
-                if (bet <= 0) {
-                    printf("Please enter a positive integer.\n");
-                } else if (bet > tokens) {
-                    printf("You do not own that many tokens.\n");
+                if (valid != 1) {
+                    printf("Invalid input, try again\n");
+                    continue;
+                } else {
+                    if (bet <= 0) {
+                        printf("Please enter a positive integer.\n");
+                    } else if (bet > tokens) {
+                        printf("You do not own that many tokens.\n");
+                    }
                 }
             } while (bet <= 0 || bet > tokens);
 
