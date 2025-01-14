@@ -3,6 +3,8 @@
 ## Description
 A simple gambling game
 
+## NOTE: Being updated, so it is currently not functional.
+
 ## Installation
 Clone the repository:
     ```bash
