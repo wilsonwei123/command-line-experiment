@@ -3,8 +3,6 @@
 ## Description
 A simple gambling game
 
-## NOTE: Being updated, and is currently not functional.
-
 ## Installation
 Clone the repository:
     ```bash
@@ -18,7 +16,7 @@ Navigate into the project directory:
 
 Compile:
     ```bash
-    gcc casino.c
+    gcc casino.c achievements.c slots_funcs.c race_funcs.c home.c
     ```
 If you are using windows, you may have to first install minGW.
 
