@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "achievements.c"
+#include "achievements.h"
 #include "home.h"
 
 void intro(void) {
