@@ -8,7 +8,8 @@ class Hand {
     int counter;
 
     public:
-    void get_card();
+    Hand(std::vector<char> deck, int num_cards);
+    char get_card();
 };
 
 //to be continued
