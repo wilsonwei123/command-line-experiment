@@ -1,7 +1,7 @@
 # Casino
 
 ## Description
-A simple gambling game
+A simple gambling game. Note: this branch is not yet ready to use, please use main.
 
 ## Installation
 Clone the repository:
