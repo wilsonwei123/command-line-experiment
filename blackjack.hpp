@@ -9,7 +9,8 @@ class Hand {
 
     public:
     Hand(std::vector<char> deck, int num_cards);
-    char get_card();
+    char deal_card();
+    std::vector<char> get_cards_left();
 };
 
 //to be continued
