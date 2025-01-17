@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "race_funcs.h"
 #include "home.h"
 #include "achievements.h"
@@ -27,20 +24,21 @@ void printIntro(void) {
 
 void printCountDown(void) {
   printf("\nStarting in...\n");
-  printf("5\n");
-  printf("4\n");
-  printf("3\n");
-  printf("2\n");
-  printf("1\n");
+  for (int i = 5; i  > 0; i--) {
+    printf("%d\n", i);
+    sleep(0.75);
+  }
   printf("Race!\n");
 }
 
 void printFirstPlaceAfterLap(struct Race race) {
+  sleep(0.8);
   printf("\nAfter lap number %d of %d\n", race.currentLap, race.numberOfLaps);
   printf("In first place, it's %s in the %s car!\n", race.firstPlaceDriverName, race.firstPlaceRaceCarColor);
 }
 
 void printCongratulations(struct Race race) {
+  sleep(0.8);
   printf("\nCongratulations to %s in the %s race car for an amazing performance.\n", race.firstPlaceDriverName, race.firstPlaceRaceCarColor);
   printf("Goodbye everybody, and hope to see you again at the next race!\n");
 }

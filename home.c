@@ -1,10 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "home.h"
-#include "achievements.h"
-#include "race_funcs.h"
-#include "slots_funcs.h"
-
 int bet, tokens = 100;
 char response;
 
