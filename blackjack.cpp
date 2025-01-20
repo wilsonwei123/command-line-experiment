@@ -1,5 +1,5 @@
-#include <vector>
-#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "blackjack.hpp"
 
 int split = 0;
@@ -48,13 +48,13 @@ int deal() {
             split = 1;
             Hand split_hand(player_hand.get_cards_left(), 50);
         }
-        //will continue rest of the function
+        //continue function later
     }
     return 0;
 }
 
 int main() {
-    //add random seed here
+    srand(time(0));
     deal();
     return 0;
 }
