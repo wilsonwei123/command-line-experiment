@@ -32,5 +32,8 @@ Run (for windows):
 ## Collaborate
 If you would like to collaborate to this repository, please fork it! Then open a pull request, and it will be reviewed shortly.
 
+## Note
+This is a work in progress, and is not fully completed yet. However, it is still functional, and can be used.
+
 ## Acknowledgements
 The racing section was a spin-off on a project from codecademy.com "race simulator": https://www.codecademy.com/paths/c/tracks/functions-and-structures-in-c-sp/modules/structures-c-sp/projects/learn-c-race-simulator
