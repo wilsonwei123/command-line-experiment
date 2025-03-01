@@ -5,9 +5,42 @@
 std::vector<char> drawn_cards;
 int split = 0;
 
-Hand::Hand (std::vector<char> deck, int num_cards) {
+Hand::Hand(std::vector<char> deck, int num_cards) {
     cards_left = deck;
     counter = num_cards;
+}
+
+void Hand::change_total(int diff) {
+    total -= diff;
+}
+
+void Hand::add_card(char card) {
+    cards.push_back(card);
+    
+    if (card == 'a') {
+        total += 11;
+    } else if (card == 'j' || card == 'q' || card == 'k' || card == 't') {
+        total += 10;
+    } else {
+        total += card - '0';
+    }
+}
+
+void Hand::sub_card(char card) {
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i] == card) {
+            cards.erase(cards.begin() + i);
+            break;
+        }
+    }
+    
+    if (card == 'a') {
+        total -= 11;
+    } else if (card == 'j' || card == 'q' || card == 'k' || card == 't') {
+        total -= 10;
+    } else {
+        total -= card - '0';
+    }
 }
 
 char Hand::deal_card() {
@@ -18,9 +51,6 @@ char Hand::deal_card() {
 
     if (dealt_card == 'a') {
         total += 11;
-        if (total > 21) {
-            total -= 10;
-        }
     } else if (dealt_card == 'j' || dealt_card == 'q' || dealt_card == 'k' || dealt_card == 't') {
         total += 10;
     } else {
@@ -40,6 +70,7 @@ int Hand::get_total() {
 
 int deal() {
     char response;
+    int num_aces = 0, used_aces = 0;
 
     std::vector<char> stan_deck = {'a', 'a', 'a', 'a', '2', '2', '2', '2', '3', '3', '3', '3', '4', '4', '4', '4', '5', '5', '5', '5', '6', '6', '6', '6', '7', '7', '7', '7', '8', '8', '8', '8', '9', '9', '9', '9', 't', 't', 't', 't', 'j', 'j', 'j', 'j', 'q', 'q', 'q', 'q', 'k', 'k', 'k', 'k'};
     Hand player_hand(stan_deck, 52);
@@ -69,6 +100,21 @@ int deal() {
             return player_hand.get_total();
         } else if (response == '3') {
             drawn_cards.push_back(player_hand.deal_card());
+
+            if (player_hand.get_total() > 21) {
+                num_aces = 0;
+                for (char card : drawn_cards) {
+                    if (card == 'a') {
+                        num_aces++;
+                    }
+                }
+                
+                while (player_hand.get_total() > 21 && num_aces > 0) {
+                    num_aces--;
+                    player_hand.change_total(10);
+                }
+            }
+
             if (player_hand.get_total() > 21) {
                 std::cout << "\nYou doubled down, and bust!\n";
             } else if (player_hand.get_total() < 21) {
@@ -107,7 +153,22 @@ int deal() {
             for (int i = 0; i < drawn_cards.size(); i++) {
                 std::cout << drawn_cards[i] << " ";
             }
+
+            num_aces = 0;
+            for (char card : drawn_cards) {
+                if (card == 'a') {
+                    num_aces++;
+                }
+            }
+            num_aces -= used_aces;
+
+            if (player_hand.get_total() > 21 && num_aces > 0) {
+                player_hand.change_total(10);
+                used_aces++;
+            }
+
             std::cout << "\nYour current total: " << player_hand.get_total() << "\n";
+
         }
 
         std::cout << "\nBust!\n";
@@ -127,5 +188,3 @@ int main() {
     deal();
     return 0;
 }
-
-//fix aces later, and make the display a function
