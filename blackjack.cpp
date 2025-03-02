@@ -91,23 +91,41 @@ std::vector<int> deal() {
         std::cin >> response;
         if (response == '1') {
             player_hand.deal_card();
+
+            num_aces = 0;
+            for (char card : player_hand.cards) {
+                if (card == 'a') {
+                    num_aces++;
+                }
+            }
+            num_aces -= used_aces;
+
+            if (player_hand.get_total() > 21 && num_aces > 0) {
+                while (player_hand.get_total() > 21 && num_aces > 0) {
+                    player_hand.change_total(10);
+                    used_aces++;
+                    num_aces--;
+                }
+            }
         } else if (response == '2') {
             std::cout << "You stood with a total of " << player_hand.get_total() << "\n";
             return {player_hand.get_total()};
         } else if (response == '3') {
             player_hand.deal_card();
 
-            if (player_hand.get_total() > 21) {
-                num_aces = 0;
-                for (char card : player_hand.cards) {
-                    if (card == 'a') {
-                        num_aces++;
-                    }
+            num_aces = 0;
+            for (char card : player_hand.cards) {
+                if (card == 'a') {
+                    num_aces++;
                 }
-                
+            }
+            num_aces -= used_aces;
+
+            if (player_hand.get_total() > 21 && num_aces > 0) {
                 while (player_hand.get_total() > 21 && num_aces > 0) {
-                    num_aces--;
                     player_hand.change_total(10);
+                    used_aces++;
+                    num_aces--;
                 }
             }
 
@@ -159,8 +177,11 @@ std::vector<int> deal() {
             num_aces -= used_aces;
 
             if (player_hand.get_total() > 21 && num_aces > 0) {
-                player_hand.change_total(10);
-                used_aces++;
+                while (player_hand.get_total() > 21 && num_aces > 0) {
+                    player_hand.change_total(10);
+                    used_aces++;
+                    num_aces--;
+                }
             }
 
             std::cout << "\nYour current total: " << player_hand.get_total() << "\n";
@@ -214,8 +235,11 @@ std::vector<int> deal() {
             num_aces -= used_aces;
 
             if (player_hand.get_total() > 21 && num_aces > 0) {
-                player_hand.change_total(10);
-                used_aces++;
+                while (player_hand.get_total() > 21 && num_aces > 0) {
+                    player_hand.change_total(10);
+                    used_aces++;
+                    num_aces--;
+                }
             }
 
             std::cout << "\nYour current total: " << player_hand.get_total() << "\n";
