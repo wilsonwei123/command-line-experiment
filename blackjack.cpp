@@ -147,6 +147,11 @@ std::vector<int> deal() {
             std::cout << player_hand.cards[i] << " ";
         }
         std::cout << "\nYour current total: " << player_hand.get_total() << "\n";
+        
+        if (player_hand.get_total() == 21) {
+            std::cout << "BLACKJACK!";
+            return {21};
+        }
     }
 
     if (split != 1) {
@@ -209,22 +214,16 @@ std::vector<int> deal() {
             std::cout << "\nEnter 1 to hit, 2 to stand: ";
             std::cin >> response;
             if (response == '1') {
-                player_hand.deal_card();
-                split_hand.deal_card();
+                if (hand1) {
+                    player_hand.deal_card();
+                }
+                if (hand2) {
+                    split_hand.deal_card();
+                }
             } else if (response == '2') {
                 std::cout << "You stood with a total of " << player_hand.get_total() << "and" << split_hand.get_total() <<  "\n";
                 return {player_hand.get_total(), split_hand.get_total()};
             }
-        
-            std::cout << "Your decks: " << "\n" << "Deck 1: ";
-            for (int i = 0; i < player_hand.cards.size(); i++) {
-                std::cout << player_hand.cards[i] << " ";
-            }
-            std::cout << "\n" << "Deck 2: ";
-            for (int i = 0; i < split_hand.cards.size(); i++) {
-                std::cout << split_hand.cards[i] << " ";
-            }
-            std::cout << "\n";
 
             num_aces = 0;
             for (char card : player_hand.cards) {
@@ -242,9 +241,52 @@ std::vector<int> deal() {
                 }
             }
 
-            std::cout << "\nYour current total: " << player_hand.get_total() << "\n";
+            num_aces_split = 0;
+            for (char card : split_hand.cards) {
+                if (card == 'a') {
+                    num_aces_split++;
+                }
+            }
+            num_aces_split -= used_aces_split;
+
+            if (split_hand.get_total() > 21 && num_aces_split > 0) {
+                while (split_hand.get_total() > 21 && num_aces_split > 0) {
+                    split_hand.change_total(10);
+                    used_aces_split++;
+                    num_aces_split--;
+                }
+            }
+
+            if (player_hand.get_total() > 21) {
+                std::cout << "Bust (for hand 1)";
+                hand1 = false;
+            } else if (player_hand.get_total() == 21) {
+                hand1 = false;
+                std::cout << "BLACKJACK! (for hand 1)";
+            }
+
+            if (split_hand.get_total() > 21) {
+                std::cout << "Bust (for hand 2)";
+                hand2 = false;
+            } else if (split_hand.get_total() == 21) {
+                hand2 = false;
+                std::cout << "BLACKJACK! (for hand 2)";
+            }
         }
-        //modify function to suit needs with split
+
+        std::cout << "Your decks: " << "\n" << "Deck 1: ";
+        for (int i = 0; i < player_hand.cards.size(); i++) {
+            std::cout << player_hand.cards[i] << " ";
+        }
+        std::cout << "\tTotal: " << player_hand.get_total();
+        std::cout << "\n" << "Deck 2: ";
+        for (int i = 0; i < split_hand.cards.size(); i++) {
+            std::cout << split_hand.cards[i] << " ";
+        }
+        std::cout << "\tTotal: " << split_hand.get_total();
+        std::cout << "\n";
+
+        return {player_hand.get_total(), split_hand.get_total()};
     }
 }
 
