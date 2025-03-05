@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "home.h"
 #include "achievements.h"
 
 struct Achievements achievements = {0, 0, 0, 0, 0, 0, 0, 0};

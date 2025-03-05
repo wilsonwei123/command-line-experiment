@@ -1,6 +1,10 @@
 #ifndef ACHIEVEMENTS_H
 #define ACHIEVEMENTS_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include "home.h"
+
 //achievements
 struct Achievements {
     int slotsProfit;

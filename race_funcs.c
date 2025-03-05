@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "race_funcs.h"
-#include "home.h"
-#include "achievements.h"
 
 // structures section
 struct Race {
@@ -86,6 +81,7 @@ int startRace(struct RaceCar* raceCar1, struct RaceCar* raceCar2) {
 
 //main function for racing
 void startRaceGamble(void) {
+    srand(time(0));
     int raceWinner;
 
     while (tokens > 0) {

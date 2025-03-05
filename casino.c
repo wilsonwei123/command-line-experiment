@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "home.h"
+#include "casino.h"
 
-int main() {
+void run_casino() {
     char uselessChar;
     int figletAvailable = system("which figlet > /dev/null 2>&1") == 0;
     if (!figletAvailable) {

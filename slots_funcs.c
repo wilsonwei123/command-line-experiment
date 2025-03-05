@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "achievements.h"
-#include "home.h"
+#include "slots_funcs.h"
 
 void intro(void) {
     printf("Welcome to the slots! Here, you get a spin of the wheels. If you get a double, you win 4x your bet. A triple is worth 7x your bet, and 777 is worth 25x.\n\n");
